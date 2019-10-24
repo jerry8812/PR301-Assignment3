@@ -3,23 +3,14 @@ import math
 
 import MyEnums
 from TIGr import AbstractDrawer
+from FrontEnd import GuiInterface
 
 
 class Drawer(AbstractDrawer):
     x_pos = 00
     y_pos = 0
-    config = open('config.txt', "r+")
-    c = config.read().splitlines()
-    if c[2] == 'FrontEndKieran':
-        from FrontEndKieran import TkinterInterface
-        this_canvas = TkinterInterface.canvas
-    elif c[2] == 'FrontEndJerry':
-        from FrontEndJerry import GuiInterface
-        this_canvas = GuiInterface.canvas
-    config.close()
 
     def __init__(self):
-        self.test_string = ''
         self.colour = ''
         self.can_draw = False
 
@@ -53,8 +44,7 @@ class Drawer(AbstractDrawer):
             direction = (math.pi * 2) / (360 / direction)
             new_x = distance * math.sin(direction)
             new_y = -distance * math.cos(direction)
-            self.this_canvas.create_line(self.x_pos, self.y_pos, self.x_pos + new_x, self.y_pos + new_y,
-                                         fill=self.colour)
+            GuiInterface.canvas.create_line(
+                self.x_pos, self.y_pos, self.x_pos + new_x, self.y_pos + new_y, fill=self.colour)
             self.x_pos += new_x
             self.y_pos += new_y
-

@@ -63,9 +63,5 @@ class AbstractInterface(ABC):
         pass
 
     @abstractmethod
-    def open_config(self):
-        pass
-
-    @abstractmethod
     def go(self):
         pass
